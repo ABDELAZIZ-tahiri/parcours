@@ -1,0 +1,2865 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>KIFAL-FINANCE</title>
+    <!-- Bootstrap core CSS           -->
+    <link href="sheet.css" rel="stylesheet">
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="stye.css" rel="stylesheet">
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+    <style>
+
+        form#multiphase {
+            border: #000 0px solid;
+            
+        }
+
+            form#multiphase > #phase2, #phase3, #phase4, #phase5, #phase6, #show_all_data {
+                display: none;
+            }
+    </style>
+    <script>
+        var marq, model,carbur, puiss, val, date;
+        function id(x) {
+            return document.getElementById(x);
+        }
+       function processPhase1(){
+	       marq = id("marque").value;
+	
+	       if(marq.length > 2 ){
+               id("phase1").style.display = "none";
+               id("phase2").style.display = "block";
+		       id("progressBar").value = 16;
+		       id("status").innerHTML = "modele de votre voiture";
+	        } else {
+	             alert("Please fill in the fields");	
+	               }
+       }
+        function processPhase2() {
+            model = id("modele").value;
+            if (model.length > 2) {
+                id("phase2").style.display = "none";
+                id("phase3").style.display = "block";
+                id("progressBar").value = 32;
+
+                id("status").innerHTML = "Date de mise en circulation ";
+            } else {
+                alert("please fill in the form");
+            }
+        }
+        function processPhase3() {
+            date = id("datepicker").value;
+            if (date.length > 0) {
+                id("phase3").style.display = "none";
+                id("phase4").style.display = "block";
+                id("progressBar").value = 48;
+                id("status").innerHTML = "CARBURANT";
+
+               
+            } else {
+                alert("please fill in the form");
+            }
+        }
+         function processPhase4() {
+            carbur = id("carburant").value;
+
+             if (carbur.length > 2) {
+                id("phase4").style.display = "none";
+                id("phase5").style.display = "block";
+                id("progressBar").value = 64;
+                id("status").innerHTML = "Puissance de voiture";
+             } else {
+                alert("please fill in the form")
+               }
+         }
+             function processPhase5() {
+                 puiss = id("puissance").value;
+                 if (puiss.length > 2) {
+                     id("phase5").style.display = "none";
+                     id("phase6").style.display = "block";
+                     id("progressBar").value = 80;
+
+                     id("status").innerHTML = " la valeur de votre voiture en dhs ";
+                 } else {
+                     alert("please fill in the form")
+                   }
+             }
+             function processPhase6() {
+                 val = id("valeur").value;
+                 if (val.length > 2) {
+                     id("phase6").style.display = "none";
+                     id("show_all_data").style.display = "block";
+                     id("progressBar").value = 100;
+                     id("display_marque").innerHTML = marq;
+		             id("display_modele").innerHTML = model;
+		             id("display_date").innerHTML = date;
+		             id("display_carbur").innerHTML = carbur;
+                     id("display_puiss").innerHTML = puiss;
+		             id("display_valeur").innerHTML = val;
+                    id("status").innerHTML = " Vous avez fini!!!";
+                 } else {
+                     alert("please fill in the form");
+                 }
+            }
+        function submitForm() {
+            id("multiphase").method = "POST";
+            id("multiphase").action = "my_parser.php";
+            id("multiphase").submit();
+        }
+    </script>
+</head>
+<body style="background-color:#FEFEDF;">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="bloglogo" href="https://kifal-auto.ma/">
+                <img src="https://kifal-auto.ma/wp-content/uploads/2019/04/logo-kefal-auto.png" style="width: 70px;" title="Accueil" alt="Logo">
+            </a>
+            <a class="navbar-brand" href="#">KIFAL-FINANCE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Assurer ma voiture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#myModal" type="button" data-toggle="modal">Financer ma voiture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Savoir plus</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Nous contacter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br><br><br><br>
+    <div class="row">
+        <div class="col-4"></div>
+
+        <div class="col-8"><h4> Choix options et garantie complémentaire</h4></div>
+    </div><br><br>
+
+              <div class="row">
+                 
+ 
+                      <div class="col-2"></div>
+                      <div class="col-8">
+                          <div class="container">
+                              <div class="jumbotron">
+                                  <form>
+                                      <div class="row">
+                                          <div class="col-6">
+                                              <div class="checkbox">
+                                                  <label>
+
+
+                                                      <input type="checkbox" value=""> Assurance tous risques
+
+
+
+                                                  </label>
+                                              </div>
+                                          </div>
+                                          <div class="col-6">
+                                              <div class="checkbox">
+                                                  <label>
+
+
+
+                                                      <input type="checkbox" value=""> Dommage et collisions
+
+                                                  </label>
+                                              </div>
+                                          </div><br><br>
+                                      </div><br>
+                                      <div class="row">
+                                          <div class="col-6">
+                                              <div class="checkbox">
+                                                  <label>
+
+                                                      <input type="checkbox" value="">Bris de glaces <select id="marque" class="form-control form-control-sm">
+                                                          <option value="">Choisissez une option</option>
+                                                          <option value="DACIA">option1</option>
+                                                          <option value="FIAT">option2</option>
+                                                          <option value="UNO">option3</option>
+                                                          <option value="CONGO">option4</option>
+                                                      </select>
+
+
+
+
+                                                  </label>
+                                              </div>
+                                          </div>
+                                          <div class="col-6">
+                                              <div class="checkbox">
+                                                  <label>
+
+                                                      <input type="checkbox" value="">   Vol
+                                                  </label>
+                                              </div>
+                                          </div>
+                                      </div><br>
+
+                                      <div class="row">
+                                          <div class="col-6">
+                                              <div class=" checkbox">
+                                                  <label>
+
+
+
+                                                      <input type="checkbox" value="">
+                                                      Incendie
+
+                                                  </label>
+                                              </div>
+                                          </div>
+                                          <div class="col-6">
+                                              <div class="checkbox">
+                                                  <label>
+
+                                                      <input type="checkbox" value=""> tierce
+                                                  </label>
+                                              </div>
+                                          </div>
+                                      </div><br>
+
+                                      <div class="row">
+                                          <div class="col-6">
+                                              <div class="checkbox">
+                                                  <label>
+                                                      <input type="checkbox" value="">Dommages et collision <select id="marque" class="form-control form-control-sm">
+                                                          <option value="">Choisissez une option</option>
+                                                          <option value="DACIA">option1</option>
+                                                          <option value="FIAT">option2</option>
+                                                          <option value="UNO">option3</option>
+                                                          <option value="CONGO">
+                                                              option4
+                                                          </option>
+                                                      </select>
+
+
+                                                  </label>
+                                              </div>
+                                          </div>
+                                          <div class="col-6">
+                                              <div class="checkbox">
+                                                  <label>
+                                                      <input type="checkbox" value=""> Innondation
+                                                  </label>
+                                              </div>
+                                          </div>
+
+                                      </div><br><br><br><strong><h6>Page incomplete</h6></strong><br><br><br>
+                                      <div class="row">
+                                          <div class="col-4"></div>
+                                          <div class="col-2">
+                                              <b type="button" onclick="document.location='par/par.html'" class="btn btn-primary" type="submit">Envoyer</b>
+                                          </div>
+                                      </div>
+
+
+                                  </form>
+                              </div>
+                              
+                          </div>
+                          
+                      </div>
+
+                     </div>
+             
+
+
+
+
+
+
+
+
+
+    <div class="row">
+        <div class="col-1"></div>
+        <div id="2" class="col-6 d">
+            <div class="col d">
+                <h5 class="font-weight-bold text-uppercase mb-4">Un crédit sur-mesure</h5>
+                <p>Choisissez le plan de paiement qui vous convient sur une période<br> allant de 6 à 72 mois. Les paiements mensuels commencent<br> à partir de 452 dh par mois.</p>
+            </div>
+        </div>
+        <div class="col-5 d">
+            <div class="col d">
+                <h5 class="font-weight-bold text-uppercase mb-4">Obtenez un devis immédiatement</h5>
+                <p>Tout se fait en quelques clics. Nous vérifions votre profil <br> et votre historique financier immédiatement pour donner<br>  une réponse. Cette dernière est confirmée en 24 heures.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <br><br>
+
+
+
+
+
+
+
+
+
+
+    <div class="shareaholic-canvas shareaholic-share-buttons-container shareaholic-ui shareaholic-resolved-canvas" data-app="floated_share_buttons" style="visibility: visible;" id="shr_canvas1">
+        <div translate="no">
+            <div class="shareaholic-share-buttons-container shareaholic-ui shr-no-print shareaholic-flat shareaholic- shareaholic-floated shareaholic-inset-counter shareaholic-vertical" style="top:40%">
+                <div class="shareaholic-show-container  ">
+                    <img alt="arrow" class="shareaholic-show-hide-arrow shr-hide" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAABQCAMAAABoKAbvAAAAS1BMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////m3hxmAAAAF3RSTlMAAwUOESQpPURmb3OMkZm0u9bb6u76/EQ4+xQAAAABYktHRBibaYUeAAABLElEQVRIx5XXRxLCMBBEUUROIsPc/6YU2BiFCd29/1V+YIM8O6YZN7ksyUBuazKQx5YM5LUnA5HTnAwI+hjg9F8A06cApUsxiF4GEL0KEHodAPQmiOnSLaD3QUBXAp+uBS5dDTy6GDPpVmDSzcCi24FBdwKdLu4Uuh8o9CDo6VHQ0cOgpQuwio4EFR0KSjoWFHQw+NMF3kjHg5FOBAOdCb50KvjQyeDABfcNd0nXFYc+L7iPNSfqi3vuuFvjw2WCL5cIBi4e5EQ9ohMXDP5cLCi4UFBykSAn6se44YZBy42CjhsEPdcPcqL+dlWuE+hcOzC4ZmBxrSAn6oDlcNXA42qBy1UCn9sHOVFH6ZDbBDG3DgBuFSDcMsj4+yLBnQKU+wtg7hjg3GGZfD1+A48urIHzHtL7AAAAAElFTkSuQmCC">
+                </div>
+
+                <div class="shareaholic-share-buttons-wrapper shareaholic-ui ">
+                    <div class="shareaholic-share-buttons-animation-wrapper shareaholic-item-enter-left-animation">
+                        <div class="shareaholic-share-buttons-heading shareaholic-custom">
+                            <div class="shareaholic-share-buttons-heading-text" style="line-height:normal;">
+
+                            </div>
+                        </div>
+
+                        <ul class="shareaholic-share-buttons shareaholic-no-margin-padding-important">
+
+                            <li data-service="twitter" class="shareaholic-share-button" style="display:list-item;" title="Twitter">
+                                <div class="shareaholic-share-button-container shr-outline shareaholic-service-twitter shareaholic-service-default" style="display: list-item;" aria-label="Tweet to Twitter" tabindex="0" role="button">
+                                    <span class="shareaholic-share-button-counter" style="display: list-item;"></span>
+                                    <div class="shareaholic-share-button-sizing " style="display: list-item;">
+                                        <a class="shareaholic-service-icon shareaholic-service-twitter shareaholic-service-default" style="display: list-item;"></a>
+                                        <span class="shr-share-button-verb" style="color:#fff!important">
+                                            Tweet
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li data-service="facebook" class="shareaholic-share-button shareaholic-has-shares" style="display:list-item;" title="Facebook">
+                                <div class="shareaholic-share-button-container shr-outline shareaholic-service-facebook shareaholic-service-default" style="display: list-item;" aria-label="Share to Facebook" tabindex="0" role="button">
+                                    <span class="shareaholic-share-button-counter" style="display: list-item;">6</span>
+                                    <div class="shareaholic-share-button-sizing " style="display: list-item;">
+                                        <a class="shareaholic-service-icon shareaholic-service-facebook shareaholic-service-default" style="display: list-item;"></a>
+                                        <span class="shr-share-button-verb" style="color:#fff!important">
+                                            Share
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li data-service="pinterest" class="shareaholic-share-button shareaholic-has-shares" style="display:list-item;" title="Pinterest">
+                                <div class="shareaholic-share-button-container shr-outline shareaholic-service-pinterest shareaholic-service-default" style="display: list-item;" aria-label="Pin to Pinterest" tabindex="0" role="button">
+                                    <span class="shareaholic-share-button-counter" style="display: list-item;">2</span>
+                                    <div class="shareaholic-share-button-sizing " style="display: list-item;">
+                                        <a class="shareaholic-service-icon shareaholic-service-pinterest shareaholic-service-default" style="display: list-item;"></a>
+                                        <span class="shr-share-button-verb" style="color:#fff!important">
+                                            Pin
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li data-service="linkedin" class="shareaholic-share-button" style="display:list-item;" title="LinkedIn">
+                                <div class="shareaholic-share-button-container shr-outline shareaholic-service-linkedin shareaholic-service-default" style="display: list-item;" aria-label="Share to LinkedIn" tabindex="0" role="button">
+                                    <span class="shareaholic-share-button-counter" style="display: list-item;"></span>
+                                    <div class="shareaholic-share-button-sizing " style="display: list-item;">
+                                        <a class="shareaholic-service-icon shareaholic-service-linkedin shareaholic-service-default" style="display: list-item;"></a>
+                                        <span class="shr-share-button-verb" style="color:#fff!important">
+                                            Share
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li data-service="email_this" class="shareaholic-share-button" style="display:list-item;" title="Email This">
+                                <div class="shareaholic-share-button-container shr-outline shareaholic-service-email_this shareaholic-service-default" style="display: list-item;" aria-label="Mail to Email This" tabindex="0" role="button">
+                                    <span class="shareaholic-share-button-counter" style="display: list-item;"></span>
+                                    <div class="shareaholic-share-button-sizing " style="display: list-item;">
+                                        <a class="shareaholic-service-icon shareaholic-service-email_this shareaholic-service-default" style="display: list-item;"></a>
+                                        <span class="shr-share-button-verb" style="color:#fff!important">
+                                            Mail
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="shareaholic-hide-container shareaholic-left-alignment shr-hide">
+                        <img alt="arrow" class="shareaholic-show-hide-arrow shareaholic-orientation-left" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAABQCAMAAABoKAbvAAAAS1BMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////m3hxmAAAAF3RSTlMAAwUOESQpPURmb3OMkZm0u9bb6u76/EQ4+xQAAAABYktHRBibaYUeAAABLElEQVRIx5XXRxLCMBBEUUROIsPc/6YU2BiFCd29/1V+YIM8O6YZN7ksyUBuazKQx5YM5LUnA5HTnAwI+hjg9F8A06cApUsxiF4GEL0KEHodAPQmiOnSLaD3QUBXAp+uBS5dDTy6GDPpVmDSzcCi24FBdwKdLu4Uuh8o9CDo6VHQ0cOgpQuwio4EFR0KSjoWFHQw+NMF3kjHg5FOBAOdCb50KvjQyeDABfcNd0nXFYc+L7iPNSfqi3vuuFvjw2WCL5cIBi4e5EQ9ohMXDP5cLCi4UFBykSAn6se44YZBy42CjhsEPdcPcqL+dlWuE+hcOzC4ZmBxrSAn6oDlcNXA42qBy1UCn9sHOVFH6ZDbBDG3DgBuFSDcMsj4+yLBnQKU+wtg7hjg3GGZfD1+A48urIHzHtL7AAAAAElFTkSuQmCC">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style id="shr-social-styles">
+        .shr-debug {
+            font-weight: bolder;
+            cursor: pointer;
+            color: #008000
+        }
+
+        .shareaholic-canvas {
+            clear: both;
+            -webkit-transition: none;
+            -moz-transition: none;
+            transition: none
+        }
+
+        .shareaholic-ui button, .shareaholic-ui .shareaholic-ui-button {
+            border: 0;
+            box-shadow: none;
+            text-shadow: none;
+            font-size: 12px;
+            padding: 6px 10px !important;
+            border-radius: 3px;
+            background: transparent;
+            display: inline-block;
+            margin: 2px;
+            border: 1px solid transparent;
+            line-height: 16px;
+            color: #555;
+            cursor: pointer;
+            height: initial;
+            text-transform: initial
+        }
+
+            .shareaholic-ui button:hover, .shareaholic-ui .shareaholic-ui-button:hover {
+                color: #000;
+                font-weight: inherit
+            }
+
+            .shareaholic-ui button.shareaholic-button-primary, .shareaholic-ui .shareaholic-ui-button.shareaholic-button-primary {
+                background-color: #52a8e8;
+                background-image: -webkit-linear-gradient(top,#52a8e8,#377ad0);
+                border: 1px solid #3f81ae;
+                border-color: #3f81ae #2e68a1 #1f5496;
+                box-shadow: inset 0 1px 0 0 #72baeb,0 1px 2px 0 #c3c3c3;
+                color: #fff;
+                font-weight: bold;
+                text-shadow: 0 -1px 1px #3275bb;
+                -webkit-appearance: none
+            }
+
+            .shareaholic-ui button.shareaholic-ui-disabled, .shareaholic-ui .shareaholic-ui-button.shareaholic-ui-disabled {
+                background-color: #ccc;
+                background-image: none;
+                border-color: #bbb;
+                box-shadow: none;
+                color: #999;
+                cursor: default;
+                opacity: .5;
+                text-shadow: none
+            }
+
+            .shareaholic-ui button.shareaholic-icon-only, .shareaholic-ui .shareaholic-ui-button.shareaholic-icon-only {
+                padding: 0
+            }
+
+                .shareaholic-ui button.shareaholic-icon-only.shareaholic-icon-16, .shareaholic-ui .shareaholic-ui-button.shareaholic-icon-only.shareaholic-icon-16 {
+                    padding: 4px
+                }
+
+                    .shareaholic-ui button.shareaholic-icon-only.shareaholic-icon-16 a, .shareaholic-ui .shareaholic-ui-button.shareaholic-icon-only.shareaholic-icon-16 a {
+                        height: 16px;
+                        width: 16px
+                    }
+
+                .shareaholic-ui button.shareaholic-icon-only.shareaholic-icon-24, .shareaholic-ui .shareaholic-ui-button.shareaholic-icon-only.shareaholic-icon-24 {
+                    padding: 0
+                }
+
+                    .shareaholic-ui button.shareaholic-icon-only.shareaholic-icon-24 a, .shareaholic-ui .shareaholic-ui-button.shareaholic-icon-only.shareaholic-icon-24 a {
+                        height: 24px;
+                        width: 24px
+                    }
+
+            .shareaholic-ui button.shareaholic-medium, .shareaholic-ui .shareaholic-ui-button.shareaholic-medium {
+                font-size: 14px;
+                padding: 4px 15px
+            }
+
+        .shareaholic-ui .shareaholic-ui-icon {
+            display: inline-block;
+            vertical-align: middle;
+            width: 16px;
+            height: 16px;
+            background-position: 50% 50%;
+            background-repeat: no-repeat
+        }
+
+            .shareaholic-ui .shareaholic-ui-icon.shareaholic-ui-loading-grey {
+                background-image: url("https://k4z6w9b5.stackpathcdn.com/v2/images_0ecbeeff/spin16_666666_trans.gif")
+            }
+
+            .shareaholic-ui .shareaholic-ui-icon.shareaholic-ui-logo {
+                width: 85px;
+                background-image: url("https://k4z6w9b5.stackpathcdn.com/v2/images_0ecbeeff/spin16_666666_trans.gif")
+            }
+
+        .shareaholic-ui input[type="text"], .shareaholic-ui textarea {
+            border: 1px solid #ddd;
+            -webkit-transition: all .3s;
+            -moz-transition: all .3s;
+            transition: all .3s;
+            background: #fff none;
+            border-radius: 3px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            font-size: 14px;
+            padding: 10px 8px;
+            color: #333
+        }
+
+            .shareaholic-ui input[type="text"]:focus, .shareaholic-ui textarea:focus {
+                border-color: #3c9ee8;
+                box-shadow: 0 0 2px 1px #2695e8;
+                outline: none
+            }
+
+        .shareaholic-tooltip {
+            font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+            background-color: #000;
+            text-align: center;
+            padding: 3px 8px 3px 8px;
+            color: #fff;
+            font-weight: normal;
+            font-size: 12px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            z-index: 10000000
+        }
+
+        .shareaholic-media-buttons .shareaholic-share-buttons-container ul.shareaholic-share-buttons {
+            padding: 0 !important;
+            margin: 0 !important
+        }
+
+        .shareaholic-show-hide-arrow {
+            height: 12px;
+            width: 8px;
+            opacity: .5
+        }
+
+        .shareaholic-hide-container {
+            text-align: left;
+            cursor: pointer
+        }
+
+            .shareaholic-hide-container.shareaholic-left-alignment {
+                text-align: right
+            }
+
+                .shareaholic-hide-container.shareaholic-left-alignment .shareaholic-show-hide-arrow {
+                    -ms-transform: rotate(180deg);
+                    -webkit-transform: rotate(180deg);
+                    transform: rotate(180deg);
+                    height: 12px;
+                    width: 8px
+                }
+
+        .shareaholic-show-container {
+            width: 100%;
+            height: 12px;
+            padding-left: 5px;
+            position: absolute;
+            top: 15%;
+            cursor: pointer
+        }
+
+            .shareaholic-show-container.shareaholic-right-alignment {
+                padding-left: 0
+            }
+
+                .shareaholic-show-container.shareaholic-right-alignment .shareaholic-show-hide-arrow {
+                    -ms-transform: rotate(180deg);
+                    -webkit-transform: rotate(180deg);
+                    transform: rotate(180deg);
+                    margin-right: 5px
+                }
+
+        .shareaholic-item-quit-left-animation {
+            animation: exit .3s 1;
+            animation-fill-mode: forwards
+        }
+
+        .shareaholic-item-enter-left-animation {
+            animation: enter .3s 1;
+            animation-fill-mode: forwards
+        }
+
+        .shareaholic-item-quit-right-animation {
+            animation: exit_right .3s 1;
+            animation-fill-mode: forwards
+        }
+
+        .shareaholic-item-enter-right-animation {
+            animation: enter_right .3s 1;
+            animation-fill-mode: forwards
+        }
+
+        .shr-element-hide {
+            display: none;
+            left: -100%
+        }
+
+        .shr-element-show {
+            display: block;
+            left: 0
+        }
+
+        .shareaholic-share-arrow-version-1 {
+            transform: scale(.7,.7) translate(-115%,115%) rotateZ(20deg)
+        }
+
+            .shareaholic-share-arrow-version-1.shareaholic-mini, .shareaholic-share-arrow-version-1.shareaholic-rectangle {
+                transform: scale(.5,.5) translate(-135%,135%) rotateZ(20deg)
+            }
+
+        .shareaholic-share-arrow-version-2 {
+            transform: scale(.7,.7) translate(-120%,100%) rotateZ(10deg)
+        }
+
+            .shareaholic-share-arrow-version-2.shareaholic-mini, .shareaholic-share-arrow-version-2.shareaholic-rectangle {
+                transform: scale(.5,.5) translate(-150%,140%) rotateZ(10deg)
+            }
+
+        .shareaholic-share-arrow-version-3 {
+            transform: scale(.7,.7) translate(-120%,120%) rotateZ(15deg)
+        }
+
+            .shareaholic-share-arrow-version-3.shareaholic-mini, .shareaholic-share-arrow-version-3.shareaholic-rectangle {
+                transform: scale(.5,.5) translate(-140%,140%) rotateZ(15deg)
+            }
+
+        .shareaholic-share-arrow-version-4 {
+            transform: scale(.8,.8) translate(-110%,95%)
+        }
+
+            .shareaholic-share-arrow-version-4.shareaholic-mini, .shareaholic-share-arrow-version-4.shareaholic-rectangle {
+                transform: scale(.6,.6) translate(-125%,115%)
+            }
+
+        @keyframes exit {
+            0% {
+                left: 0
+            }
+
+            100% {
+                left: -80px
+            }
+        }
+
+        @-webkit-keyframes exit {
+            0% {
+                left: 0
+            }
+
+            100% {
+                left: -80px
+            }
+        }
+
+        @keyframes enter {
+            0% {
+                left: -40px
+            }
+
+            100% {
+                left: 0
+            }
+        }
+
+        @-webkit-keyframes enter {
+            0% {
+                left: -40px
+            }
+
+            100% {
+                left: 0
+            }
+        }
+
+        @keyframes exit_right {
+            0% {
+                left: 0
+            }
+
+            100% {
+                left: 80px
+            }
+        }
+
+        @-webkit-keyframes exit_right {
+            0% {
+                left: 0
+            }
+
+            100% {
+                left: 80px
+            }
+        }
+
+        @keyframes enter_right {
+            0% {
+                left: 40px
+            }
+
+            100% {
+                left: 0
+            }
+        }
+
+        @-webkit-keyframes enter_right {
+            0% {
+                left: 40px
+            }
+
+            100% {
+                left: 0
+            }
+        }
+
+        @font-face {
+            font-family: 'shareaholic-icons';
+            font-display: block;
+            src: url("https://k4z6w9b5.stackpathcdn.com/v2/fonts_0ecbeeff/shareaholic-icons.eot");
+            src: url("https://k4z6w9b5.stackpathcdn.com/v2/fonts_0ecbeeff/shareaholic-icons.eot?#iefix") format("embedded-opentype"),url("https://k4z6w9b5.stackpathcdn.com/v2/fonts_0ecbeeff/shareaholic-icons.woff") format("woff"),url("https://k4z6w9b5.stackpathcdn.com/v2/fonts_0ecbeeff/shareaholic-icons.ttf") format("truetype"),url("https://k4z6w9b5.stackpathcdn.com/v2/fonts_0ecbeeff/shareaholic-icons.svg#shareaholic-icons") format("svg")
+        }
+
+        font-weight normal {
+            font-style: normal
+        }
+
+        a.shareaholic-service-icon.shareaholic-service-default {
+            box-shadow: inset 0 3px 3px -3px #fff;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 4px;
+            background-image: none;
+            box-sizing: border-box;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            line-height: 1.1em;
+            color: #fff !important;
+            display: block !important;
+            cursor: pointer;
+            font-size: 24px;
+            height: 40px;
+            width: 40px;
+            text-shadow: none;
+            text-decoration: none
+        }
+
+        a.shareaholic-service-icon:before {
+            font-family: 'shareaholic-icons' !important;
+            font-style: normal !important;
+            font-weight: normal !important;
+            font-variant: normal !important;
+            line-height: 1.1em !important;
+            text-transform: none !important;
+            color: unset;
+            position: absolute;
+            top: 7px;
+            left: 7px;
+            speak: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: block
+        }
+
+        a.shareaholic-service-icon:after {
+            display: block
+        }
+
+        .shareaholic-service-placeholder {
+            border: 3px dotted #d6d6d6;
+            background-color: #f1f2f2
+        }
+
+        ul.shareaholic-share-buttons.shareaholic-mini .shareaholic-service-icon, ul.shareaholic-mini .shareaholic-service-icon {
+            font-size: 14px;
+            height: 20px;
+            width: 20px;
+            background-image: none;
+            border-radius: 2px
+        }
+
+            ul.shareaholic-share-buttons.shareaholic-mini .shareaholic-service-icon:before, ul.shareaholic-mini .shareaholic-service-icon:before {
+                top: 2px;
+                left: 2px
+            }
+
+        .shareaholic-share-buttons-container .shareaholic-share-button-container ul.shareaholic-share-buttons li.shareaholic-share-button:hover {
+            opacity: .65
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-mini li.shareaholic-share-button {
+            background: rgba(0,0,0,0) !important;
+            font-size: 14px;
+            height: 20px;
+            width: 20px
+        }
+
+            .shareaholic-share-buttons-container.shareaholic-mini li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon {
+                font-size: 14px;
+                height: 20px;
+                width: 20px;
+                border-radius: 2px
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-mini li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon:before {
+                    top: 2px;
+                    left: 2px
+                }
+
+        .shareaholic-share-buttons-container.shareaholic-flat li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon {
+            box-shadow: none;
+            border: none;
+            border-radius: 0
+        }
+
+            .shareaholic-share-buttons-container.shareaholic-flat li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon:before {
+                top: 3px;
+                left: 3px
+            }
+
+        .shareaholic-share-buttons-container.shareaholic-flat:not(.shareaholic-mini) li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon:before {
+            left: 8px;
+            top: 8px
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-flat.shareaholic-mini:not(.shareaholic-mobile.shareaholic-bottom-align) li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon {
+            font-size: 14px
+        }
+
+            .shareaholic-share-buttons-container.shareaholic-flat.shareaholic-mini:not(.shareaholic-mobile.shareaholic-bottom-align) li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon:before {
+                top: 3px;
+                left: 3px
+            }
+
+        .shareaholic-share-buttons-container.shareaholic-flat.shareaholic-large li.shareaholic-share-button .shareaholic-share-button-container {
+            height: 70px
+        }
+
+            .shareaholic-share-buttons-container.shareaholic-flat.shareaholic-large
+            li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon {
+                font-size: 32px;
+                height: 70px;
+                width: 70px
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-flat.shareaholic-large li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon:before {
+                    top: 19px;
+                    left: 19px
+                }
+
+        .shareaholic-share-buttons-container.shareaholic-round li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon {
+            font-size: 24px;
+            border-radius: 50%;
+            box-shadow: none;
+            border: none
+        }
+
+            .shareaholic-share-buttons-container.shareaholic-round li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon:before {
+                top: 8px;
+                left: 8px
+            }
+
+        .shareaholic-share-buttons-container.shareaholic-round.shareaholic-mini li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon {
+            font-size: 12px;
+            height: 20px;
+            width: 20px;
+            border-radius: 50% !important
+        }
+
+            .shareaholic-share-buttons-container.shareaholic-round.shareaholic-mini li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon:before {
+                top: 4px;
+                left: 4px
+            }
+
+        .shareaholic-share-buttons-container.shareaholic-rectangle li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon {
+            text-align: left;
+            font-size: 13px;
+            height: 20px;
+            width: 70px;
+            border-radius: 2px
+        }
+
+            .shareaholic-share-buttons-container.shareaholic-rectangle li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon:before {
+                top: 2px;
+                left: 3px
+            }
+
+        .shareaholic-share-buttons-container.shareaholic-rectangle.shareaholic-flat li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon:before {
+            top: 3px;
+            left: 4px
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-rectangle.shareaholic-flat.shareaholic-round li.shareaholic-share-button .shareaholic-share-button-container {
+            border-radius: 0
+        }
+
+            .shareaholic-share-buttons-container.shareaholic-rectangle.shareaholic-flat.shareaholic-round li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon {
+                border-radius: 20px
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-rectangle.shareaholic-flat.shareaholic-round li.shareaholic-share-button .shareaholic-share-button-container .shareaholic-service-icon:before {
+                    top: 3px;
+                    left: 7px
+                }
+
+        .shareaholic-service-default {
+            background-color: #94a9ac
+        }
+
+        a.shareaholic-service-default:before {
+            content: ' \e00f'
+        }
+
+        .shareaholic-service-about_me {
+            background-color: #054a76
+        }
+
+        a.shareaholic-service-about_me:before {
+            content: ' \e000'
+        }
+
+        .shareaholic-service-aim {
+            background-color: #1d8698
+        }
+
+        a.shareaholic-service-aim:before {
+            content: ' \e001'
+        }
+
+        .shareaholic-service-all {
+            background-color: #45a147
+        }
+
+        a.shareaholic-service-all:before {
+            content: ' \e002'
+        }
+
+        .shareaholic-service-amazon {
+            background-color: #000
+        }
+
+        a.shareaholic-service-amazon:before {
+            content: ' \e003'
+        }
+
+        .shareaholic-service-aol_mail {
+            background-color: #a70a4f
+        }
+
+        a.shareaholic-service-aol_mail:before {
+            content: ' \e004'
+        }
+
+        .shareaholic-service-arto {
+            background-color: #83b859
+        }
+
+        a.shareaholic-service-arto:before {
+            content: ' \e005'
+        }
+
+        .shareaholic-service-baidu {
+            background-color: #006cb7
+        }
+
+        a.shareaholic-service-baidu:before {
+            content: ' \e006'
+        }
+
+        .shareaholic-service-bbb {
+            background-color: #002b80
+        }
+
+        a.shareaholic-service-bbb:before {
+            content: ' \e007'
+        }
+
+        .shareaholic-service-behance {
+            background-color: #000
+        }
+
+        a.shareaholic-service-behance:before {
+            content: ' \e008'
+        }
+
+        .shareaholic-service-bit_ly {
+            background-color: #ee6123
+        }
+
+        a.shareaholic-service-bit_ly:before {
+            content: ' \e009'
+        }
+
+        .shareaholic-service-blogger_post {
+            background-color: #fd792f
+        }
+
+        a.shareaholic-service-blogger_post:before {
+            content: ' \e00a'
+        }
+
+        .shareaholic-service-bloglovin {
+            background-color: #4cd1fa
+        }
+
+        a.shareaholic-service-bloglovin:before {
+            content: ' \e00b'
+        }
+
+        .shareaholic-service-box_net {
+            background-color: #1c88e9
+        }
+
+        a.shareaholic-service-box_net:before {
+            content: ' \e00c'
+        }
+
+        .shareaholic-service-buffer {
+            background-color: #231f20
+        }
+
+        a.shareaholic-service-buffer:before {
+            content: ' \e00d'
+        }
+
+        .shareaholic-service-buzzster {
+            background-color: #147611
+        }
+
+        a.shareaholic-service-buzzster:before {
+            content: ' \e00e'
+        }
+
+        .shareaholic-service-delicious {
+            background-color: #2d395a
+        }
+
+        a.shareaholic-service-delicious:before {
+            content: ' \e010'
+        }
+
+        .shareaholic-service-digg {
+            background-color: #080808
+        }
+
+        a.shareaholic-service-digg:before {
+            content: ' \e011'
+        }
+
+        .shareaholic-service-diigo {
+            background-color: #0b5fa0
+        }
+
+        a.shareaholic-service-diigo:before {
+            content: ' \e012'
+        }
+
+        .shareaholic-service-disqus {
+            background-color: #2e9fff
+        }
+
+        a.shareaholic-service-disqus:before {
+            content: ' \e013'
+        }
+
+        .shareaholic-service-dribbble {
+            background-color: #ea4c89
+        }
+
+        a.shareaholic-service-dribbble:before {
+            content: ' \e014'
+        }
+
+        .shareaholic-service-ebay {
+            background-color: #f00
+        }
+
+        a.shareaholic-service-ebay:before {
+            content: ' \e015'
+        }
+
+        .shareaholic-service-email_this {
+            background-color: #939598
+        }
+
+        a.shareaholic-service-email_this:before {
+            content: ' \e016'
+        }
+
+        .shareaholic-service-etsy {
+            background-color: #e06331
+        }
+
+        a.shareaholic-service-etsy:before {
+            content: ' \e017'
+        }
+
+        .shareaholic-service-evernote {
+            background-color: #6bb130
+        }
+
+        a.shareaholic-service-evernote:before {
+            content: ' \e018'
+        }
+
+        .shareaholic-service-facebook {
+            background-color: #3b5998
+        }
+
+        a.shareaholic-service-facebook:before {
+            content: ' \e019'
+        }
+
+        .shareaholic-service-fancy {
+            background-color: #4da3da
+        }
+
+        a.shareaholic-service-fancy:before {
+            content: ' \e01d'
+        }
+
+        .shareaholic-service-fark {
+            background-color: #706da3
+        }
+
+        a.shareaholic-service-fark:before {
+            content: ' \e01e'
+        }
+
+        .shareaholic-service-favorite {
+            background-color: #ca0814
+        }
+
+        a.shareaholic-service-favorite:before {
+            content: ' \e01f'
+        }
+
+        .shareaholic-service-feedly {
+            background-color: #2bb24c
+        }
+
+        a.shareaholic-service-feedly:before {
+            content: ' \e020'
+        }
+
+        .shareaholic-service-five_hundred_px {
+            background-color: #1a171b
+        }
+
+        a.shareaholic-service-five_hundred_px:before {
+            content: ' \e021'
+        }
+
+        .shareaholic-service-flickr {
+            background-color: #ff0084
+        }
+
+        a.shareaholic-service-flickr:before {
+            content: ' \e022'
+        }
+
+        .shareaholic-service-flipboard {
+            background-color: #b01e1f
+        }
+
+        a.shareaholic-service-flipboard:before {
+            content: ' \e023'
+        }
+
+        .shareaholic-service-foursquare {
+            background-color: #f94877
+        }
+
+        a.shareaholic-service-foursquare:before {
+            content: ' \e024'
+        }
+
+        .shareaholic-service-github {
+            background-color: #181616
+        }
+
+        a.shareaholic-service-github:before {
+            content: ' \e025'
+        }
+
+        .shareaholic-service-google_apps_mail {
+            background-color: #58595b
+        }
+
+        a.shareaholic-service-google_apps_mail:before {
+            content: ' \e026'
+        }
+
+        .shareaholic-service-google_bookmarks {
+            background-color: #18841f
+        }
+
+        a.shareaholic-service-google_bookmarks:before {
+            content: ' \e027'
+        }
+
+        .shareaholic-service-google_classroom {
+            background-color: #25a667
+        }
+
+        a.shareaholic-service-google_classroom:before {
+            content: ' \e028'
+        }
+
+        .shareaholic-service-google_mail {
+            background-color: #b72731
+        }
+
+        a.shareaholic-service-google_mail:before {
+            content: ' \e029'
+        }
+
+        .shareaholic-service-google_plus {
+            background-color: #dd4b39
+        }
+
+        a.shareaholic-service-google_plus:before {
+            content: ' \e02a'
+        }
+
+        .shareaholic-service-hootsuite {
+            background-color: #1a3560
+        }
+
+        a.shareaholic-service-hootsuite:before {
+            content: ' \e02b'
+        }
+
+        .shareaholic-service-hotmail {
+            background-color: #0072c6
+        }
+
+        a.shareaholic-service-hotmail:before {
+            content: ' \e02c'
+        }
+
+        .shareaholic-service-houzz {
+            background-color: #7bc043
+        }
+
+        a.shareaholic-service-houzz:before {
+            content: ' \e02d'
+        }
+
+        .shareaholic-service-inbound_org {
+            background-color: #0e4553
+        }
+
+        a.shareaholic-service-inbound_org:before {
+            content: ' \e02e'
+        }
+
+        .shareaholic-service-instagram {
+            background-color: #e4405f
+        }
+
+        a.shareaholic-service-instagram:before {
+            content: ' \e02f'
+        }
+
+        .shareaholic-service-instapaper {
+            background-color: #414042
+        }
+
+        a.shareaholic-service-instapaper:before {
+            content: ' \e030'
+        }
+
+        .shareaholic-service-itunes_podcast {
+            background-color: #794696
+        }
+
+        a.shareaholic-service-itunes_podcast:before {
+            content: ' \e031'
+        }
+
+        .shareaholic-service-kik {
+            background-color: #82bc23
+        }
+
+        a.shareaholic-service-kik:before {
+            content: ' \e032'
+        }
+
+        .shareaholic-service-kindle_it {
+            background-color: #f90
+        }
+
+        a.shareaholic-service-kindle_it:before {
+            content: ' \e033'
+        }
+
+        .shareaholic-service-line_me {
+            background-color: #00c300
+        }
+
+        a.shareaholic-service-line_me:before {
+            content: ' \e034'
+        }
+
+        .shareaholic-service-linkedin {
+            background-color: #007bb6
+        }
+
+        a.shareaholic-service-linkedin:before {
+            content: ' \e035'
+        }
+
+        .shareaholic-service-livejournal {
+            background-color: #00b0ea
+        }
+
+        a.shareaholic-service-livejournal:before {
+            content: ' \e036'
+        }
+
+        .shareaholic-service-mail {
+            background-color: #2858c1
+        }
+
+        a.shareaholic-service-mail:before {
+            content: ' \e037'
+        }
+
+        .shareaholic-service-meneame {
+            background-color: #f56b36
+        }
+
+        a.shareaholic-service-meneame:before {
+            content: ' \e03a'
+        }
+
+        .shareaholic-service-mister_wong {
+            background-color: #ab0415
+        }
+
+        a.shareaholic-service-mister_wong:before {
+            content: ' \e03b'
+        }
+
+        .shareaholic-service-mix {
+            background-color: #e06331
+        }
+
+        a.shareaholic-service-mix:before {
+            content: ' \e03c'
+        }
+
+        .shareaholic-service-mixi {
+            background-color: #d1ad5a
+        }
+
+        a.shareaholic-service-mixi:before {
+            content: ' \e03d'
+        }
+
+        .shareaholic-service-msdn {
+            background-color: #000
+        }
+
+        a.shareaholic-service-msdn:before {
+            content: ' \e03e'
+        }
+
+        .shareaholic-service-myspace {
+            background-color: #231f20
+        }
+
+        a.shareaholic-service-myspace:before {
+            content: ' \e03f'
+        }
+
+        .shareaholic-service-odnoklassniki {
+            background-color: #e67e17
+        }
+
+        a.shareaholic-service-odnoklassniki:before {
+            content: ' \e040'
+        }
+
+        .shareaholic-service-onenote {
+            background-color: #80397b
+        }
+
+        a.shareaholic-service-onenote:before {
+            content: ' \e041'
+        }
+
+        .shareaholic-service-pinboard_in {
+            background-color: #0c52be
+        }
+
+        a.shareaholic-service-pinboard_in:before {
+            content: ' \e043'
+        }
+
+        .shareaholic-service-pinterest {
+            background-color: #cb2027
+        }
+
+        a.shareaholic-service-pinterest:before {
+            content: ' \e044'
+        }
+
+        .shareaholic-service-plurk {
+            background-color: #cf682f
+        }
+
+        a.shareaholic-service-plurk:before {
+            content: ' \e045'
+        }
+
+        .shareaholic-service-pocket {
+            background-color: #ee4055
+        }
+
+        a.shareaholic-service-pocket:before {
+            content: ' \e046'
+        }
+
+        .shareaholic-service-printfriendly {
+            background-color: #a0b979
+        }
+
+        a.shareaholic-service-printfriendly:before {
+            content: ' \e048'
+        }
+
+        .shareaholic-service-quora {
+            background-color: #d84745
+        }
+
+        a.shareaholic-service-quora:before {
+            content: ' \e049'
+        }
+
+        .shareaholic-service-reddit {
+            background-color: #7d99ad
+        }
+
+        a.shareaholic-service-reddit:before {
+            content: ' \e04b'
+        }
+
+        .shareaholic-service-rss {
+            background-color: #fd882a
+        }
+
+        a.shareaholic-service-rss:before {
+            content: ' \e04c'
+        }
+
+        .shareaholic-service-shareaholic_archive {
+            background-color: #ca0814
+        }
+
+        a.shareaholic-service-shareaholic_archive:before {
+            content: ' \e04e'
+        }
+
+        .shareaholic-service-skype {
+            background-color: #00aff0
+        }
+
+        a.shareaholic-service-skype:before {
+            content: ' \e04f'
+        }
+
+        .shareaholic-service-slack {
+            background-color: #563c82
+        }
+
+        a.shareaholic-service-slack:before {
+            content: ' \e050'
+        }
+
+        .shareaholic-service-slideshare {
+            background-color: #0177b5
+        }
+
+        a.shareaholic-service-slideshare:before {
+            content: ' \e051'
+        }
+
+        .shareaholic-service-sms {
+            background-color: #1598d5
+        }
+
+        a.shareaholic-service-sms:before {
+            content: ' \e052'
+        }
+
+        .shareaholic-service-soundcloud {
+            background-color: #f30
+        }
+
+        a.shareaholic-service-soundcloud:before {
+            content: ' \e054'
+        }
+
+        .shareaholic-service-soup_io {
+            background-color: #cd011a
+        }
+
+        a.shareaholic-service-soup_io:before {
+            content: ' \e055'
+        }
+
+        .shareaholic-service-spotify {
+            background-color: #23cf5f
+        }
+
+        a.shareaholic-service-spotify:before {
+            content: ' \e056'
+        }
+
+        .shareaholic-service-stackoverflow {
+            background-color: #fe7a15
+        }
+
+        a.shareaholic-service-stackoverflow:before {
+            content: ' \e057'
+        }
+
+        .shareaholic-service-stumbleupon {
+            background-color: #ec5838
+        }
+
+        a.shareaholic-service-stumbleupon:before {
+            content: ' \e059'
+        }
+
+        .shareaholic-service-stumpedia {
+            background-color: #fd9d0f
+        }
+
+        a.shareaholic-service-stumpedia:before {
+            content: ' \e05a'
+        }
+
+        .shareaholic-service-symphony {
+            background-color: #cb2027
+        }
+
+        a.shareaholic-service-symphony:before {
+            content: ' \e05b'
+        }
+
+        .shareaholic-service-techmeme {
+            background-color: #174a61
+        }
+
+        a.shareaholic-service-techmeme:before {
+            content: ' \e05c'
+        }
+
+        .shareaholic-service-tinyurl {
+            background-color: #009
+        }
+
+        a.shareaholic-service-tinyurl:before {
+            content: ' \e05e'
+        }
+
+        .shareaholic-service-tripadvisor {
+            background-color: #589442
+        }
+
+        a.shareaholic-service-tripadvisor:before {
+            content: ' \e060'
+        }
+
+        .shareaholic-service-tumblr {
+            background-color: #35465d
+        }
+
+        a.shareaholic-service-tumblr:before {
+            content: ' \e061'
+        }
+
+        .shareaholic-service-twitter {
+            background-color: #2ba9e1
+        }
+
+        a.shareaholic-service-twitter:before {
+            content: ' \e062'
+        }
+
+        .shareaholic-service-twitthat {
+            background-color: #0895cd
+        }
+
+        a.shareaholic-service-twitthat:before {
+            content: ' \e063'
+        }
+
+        .shareaholic-service-typepad_post {
+            background-color: #becb4f
+        }
+
+        a.shareaholic-service-typepad_post:before {
+            content: ' \e064'
+        }
+
+        .shareaholic-service-viadeo {
+            background-color: #000
+        }
+
+        a.shareaholic-service-viadeo:before {
+            content: ' \e065'
+        }
+
+        .shareaholic-service-vimeo {
+            background-color: #1ab7ea
+        }
+
+        a.shareaholic-service-vimeo:before {
+            content: ' \e067'
+        }
+
+        .shareaholic-service-vine {
+            background-color: #00b488
+        }
+
+        a.shareaholic-service-vine:before {
+            content: ' \e068'
+        }
+
+        .shareaholic-service-vk {
+            background-color: #4d75a3
+        }
+
+        a.shareaholic-service-vk:before {
+            content: ' \e069'
+        }
+
+        .shareaholic-service-wanelo {
+            background-color: #1a96d2
+        }
+
+        a.shareaholic-service-wanelo:before {
+            content: ' \e06a'
+        }
+
+        .shareaholic-service-we_heart_it {
+            background-color: #fe7da3
+        }
+
+        a.shareaholic-service-we_heart_it:before {
+            content: ' \e06b'
+        }
+
+        .shareaholic-service-weibo {
+            background-color: #d82829
+        }
+
+        a.shareaholic-service-weibo:before {
+            content: ' \e06d'
+        }
+
+        .shareaholic-service-whatsapp {
+            background-color: #29a71a
+        }
+
+        a.shareaholic-service-whatsapp:before {
+            content: ' \e06e'
+        }
+
+        .shareaholic-service-windows_live_favorites {
+            background-color: #6ba2c5
+        }
+
+        a.shareaholic-service-windows_live_favorites:before {
+            content: ' \e06f'
+        }
+
+        .shareaholic-service-wordpress_blog {
+            background-color: #58585b
+        }
+
+        a.shareaholic-service-wordpress_blog:before {
+            content: ' \e070'
+        }
+
+        .shareaholic-service-wykop {
+            background-color: #f48339
+        }
+
+        a.shareaholic-service-wykop:before {
+            content: ' \e071'
+        }
+
+        .shareaholic-service-xing {
+            background-color: #026466
+        }
+
+        a.shareaholic-service-xing:before {
+            content: ' \e072'
+        }
+
+        .shareaholic-service-yahoo {
+            background-color: #9b2c96
+        }
+
+        a.shareaholic-service-yahoo:before {
+            content: ' \e073'
+        }
+
+        .shareaholic-service-yammer {
+            background-color: #45b0d3
+        }
+
+        a.shareaholic-service-yammer:before {
+            content: ' \e074'
+        }
+
+        .shareaholic-service-yc_hacker_news {
+            background-color: #fd7c3a
+        }
+
+        a.shareaholic-service-yc_hacker_news:before {
+            content: ' \e075'
+        }
+
+        .shareaholic-service-yelp {
+            background-color: #c41200
+        }
+
+        a.shareaholic-service-yelp:before {
+            content: ' \e076'
+        }
+
+        .shareaholic-service-youtube {
+            background-color: #cd201f
+        }
+
+        a.shareaholic-service-youtube:before {
+            content: ' \e077'
+        }
+
+        .shareaholic-service-yummly {
+            background-color: #e06331
+        }
+
+        a.shareaholic-service-yummly:before {
+            content: ' \e078'
+        }
+
+        .shareaholic-service-zillow_digs {
+            background-color: #06c
+        }
+
+        a.shareaholic-service-zillow_digs:before {
+            content: ' \e079'
+        }
+
+        .shareaholic-service-telegram {
+            background-color: #2ca5e0
+        }
+
+        a.shareaholic-service-telegram:before {
+            content: ' \e05d'
+        }
+
+        .shareaholic-service-viber {
+            background-color: #7c529e
+        }
+
+        a.shareaholic-service-viber:before {
+            content: ' \e066'
+        }
+
+        .shareaholic-service-trello {
+            background-color: #0079bf
+        }
+
+        a.shareaholic-service-trello:before {
+            content: ' \e05f'
+        }
+
+        .shareaholic-service-snapchat {
+            background-color: #e8d100
+        }
+
+        a.shareaholic-service-snapchat:before {
+            content: ' \e053'
+        }
+
+        .shareaholic-service-wechat {
+            background-color: #7bb32e
+        }
+
+        a.shareaholic-service-wechat:before {
+            content: ' \e06c'
+        }
+
+        .shareaholic-service-meetup {
+            background-color: #e0393e
+        }
+
+        a.shareaholic-service-meetup:before {
+            content: ' \e039'
+        }
+
+        .shareaholic-service-patreon {
+            background-color: #f96854
+        }
+
+        a.shareaholic-service-patreon:before {
+            content: ' \e042'
+        }
+
+        .shareaholic-service-strava {
+            background-color: #fc4c02
+        }
+
+        a.shareaholic-service-strava:before {
+            content: ' \e058'
+        }
+
+        .shareaholic-service-medium {
+            background-color: #000
+        }
+
+        a.shareaholic-service-medium:before {
+            content: ' \e038'
+        }
+
+        .shareaholic-service-facebook_messenger {
+            background-color: #3b5998
+        }
+
+        a.shareaholic-service-facebook_messenger:before {
+            content: ' \e01c'
+        }
+
+        .shareaholic-service-print {
+            background-color: #58595b
+        }
+
+        a.shareaholic-service-print:before {
+            content: ' \e047'
+        }
+
+        .shareaholic-floated-share-buttons-container {
+            display: none
+        }
+
+        @media only screen and (min-width:700px) and (orientation:landscape) {
+            .shareaholic-floated-share-buttons-container {
+                display: inherit
+            }
+        }
+
+        @media only screen and (min-width:400px) and (orientation:portrait) {
+            .shareaholic-floated-share-buttons-container {
+                display: inherit
+            }
+        }
+
+        .shareaholic-share-buttons-container {
+            margin: 0 auto;
+            position: relative;
+            font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+            -webkit-transition: all .25s;
+            -moz-transition: all .25s;
+            transition: all .25s
+        }
+
+            .shareaholic-share-buttons-container li.shareaholic-total-count {
+                font-size: 10px !important;
+                line-height: 1.4em;
+                margin: 12px 20px 0 0 !important;
+                padding: 0 !important;
+                text-align: center;
+                height: 40px;
+                left: 14px;
+                top: -7px;
+                position: relative;
+                float: left;
+                list-style: none !important;
+                background: none !important;
+                display: list-item
+            }
+
+                .shareaholic-share-buttons-container li.shareaholic-total-count:before {
+                    display: none
+                }
+
+                .shareaholic-share-buttons-container li.shareaholic-total-count .shareaholic-total-count-bg {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute
+                }
+
+                .shareaholic-share-buttons-container li.shareaholic-total-count .shareaholic-total-share-count {
+                    position: relative;
+                    top: 4px;
+                    font-size: 14px;
+                    font-weight: 600
+                }
+
+                    .shareaholic-share-buttons-container li.shareaholic-total-count .shareaholic-total-share-count.shareaholic-no-label {
+                        top: 0 !important
+                    }
+
+                .shareaholic-share-buttons-container li.shareaholic-total-count .shareaholic-shares-label {
+                    position: relative;
+                    top: 4px;
+                    padding: 0 2px
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-diglett li.shareaholic-total-count {
+                height: 30px;
+                top: 3px
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-diglett li.shareaholic-total-count .shareaholic-total-share-count {
+                    top: 1px
+                }
+
+                .shareaholic-share-buttons-container.shareaholic-diglett li.shareaholic-total-count .shareaholic-shares-label {
+                    top: 2px
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-diglett.shareaholic-vertical li.shareaholic-total-count {
+                left: 10px;
+                margin-bottom: 5px
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-diglett.shareaholic-vertical li.shareaholic-total-count .shareaholic-total-share-count {
+                    top: 0
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-vertical li.shareaholic-total-count {
+                float: none;
+                left: 0;
+                margin: 0 auto !important
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-vertical.shareaholic-top-counter li.shareaholic-total-count {
+                top: 0
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-rectangle:not(.shareaholic-vertical) li.shareaholic-total-count {
+                height: 20px;
+                top: -7px;
+                padding: 0 5px
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-rectangle:not(.shareaholic-vertical) li.shareaholic-total-count .shareaholic-total-share-count {
+                    display: inline;
+                    vertical-align: middle;
+                    line-height: 20px;
+                    top: auto
+                }
+
+                .shareaholic-share-buttons-container.shareaholic-rectangle:not(.shareaholic-vertical) li.shareaholic-total-count .shareaholic-shares-label {
+                    display: inline;
+                    vertical-align: middle;
+                    line-height: 20px;
+                    top: auto
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-rectangle:not(.shareaholic-vertical).shareaholic-top-counter li.shareaholic-total-count {
+                top: 28px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-mini:not(.shareaholic-vertical) li.shareaholic-total-count {
+                height: 20px;
+                top: -7px;
+                padding: 0 5px
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-mini:not(.shareaholic-vertical) li.shareaholic-total-count .shareaholic-total-share-count {
+                    display: inline;
+                    vertical-align: middle;
+                    line-height: 20px;
+                    top: auto
+                }
+
+                .shareaholic-share-buttons-container.shareaholic-mini:not(.shareaholic-vertical) li.shareaholic-total-count .shareaholic-shares-label {
+                    display: inline;
+                    vertical-align: middle;
+                    line-height: 20px;
+                    top: auto
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-top-counter li.shareaholic-total-count {
+                top: 28px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-floated li.shareaholic-total-count {
+                margin-bottom: -7px !important;
+                line-height: 40px
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-floated li.shareaholic-total-count .shareaholic-total-share-count {
+                    top: -6px
+                }
+
+                .shareaholic-share-buttons-container.shareaholic-floated li.shareaholic-total-count .shareaholic-shares-label {
+                    top: -32px
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-mobile li.shareaholic-total-count {
+                float: left;
+                top: 0;
+                left: 0;
+                margin: 0 !important
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-mobile.shareaholic-inset-counter li.shareaholic-total-count {
+                height: 56px
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-mobile.shareaholic-inset-counter li.shareaholic-total-count
+                .shareaholic-total-share-count {
+                    top: 0
+                }
+
+                .shareaholic-share-buttons-container.shareaholic-mobile.shareaholic-inset-counter li.shareaholic-total-count .shareaholic-shares-label {
+                    top: -24px
+                }
+
+            .shareaholic-share-buttons-container .shareaholic-share-buttons-wrapper {
+                display: inline-block;
+                text-align: left;
+                -webkit-transition: none;
+                -moz-transition: none;
+                transition: none
+            }
+
+            .shareaholic-share-buttons-container .shareaholic-share-buttons-wrapper-with-headline {
+                margin-left: 25px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-center-align {
+                text-align: center
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-left-align {
+                text-align: left
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-right-align {
+                text-align: right
+            }
+
+            .shareaholic-share-buttons-container ul.shareaholic-share-buttons {
+                float: none !important;
+                background: none !important;
+                list-style: none;
+                overflow: hidden;
+                margin: 0 0 0 10px !important;
+                padding: 0 !important;
+                -moz-user-select: -moz-none;
+                -webkit-user-select: none;
+                user-select: none;
+                display: block
+            }
+
+                .shareaholic-share-buttons-container ul.shareaholic-share-buttons.shareaholic-no-margin-padding-important {
+                    padding: 0 !important;
+                    margin: 0 !important
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-vertical ul.shareaholic-share-buttons {
+                overflow: visible;
+                height: auto;
+                display: inline-block
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-vertical ul.shareaholic-share-buttons li.shareaholic-share-button {
+                    float: none !important
+                }
+
+                    .shareaholic-share-buttons-container.shareaholic-vertical ul.shareaholic-share-buttons li.shareaholic-share-button .shareaholic-share-button-sizing {
+                        float: none
+                    }
+
+            .shareaholic-share-buttons-container.shareaholic-vertical.shareaholic-top-counter li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-counter {
+                display: block
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-vertical.shareaholic-top-counter li.shareaholic-share-button .shareaholic-share-button-counter {
+                display: none
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-vertical.shareaholic-side-counter li.shareaholic-share-button.shareaholic-has-shares {
+                width: 87px;
+                display: inline-block
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-vertical.shareaholic-side-counter li.shareaholic-share-button .shareaholic-share-button-counter {
+                float: right !important
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-horizontal ul.shareaholic-share-buttons li.shareaholic-share-button {
+                float: left !important
+            }
+
+            .shareaholic-share-buttons-container .shareaholic-custom {
+                margin-left: 15px
+            }
+
+            .shareaholic-share-buttons-container .shareaholic-share-buttons-heading {
+                text-align: left !important;
+                text-indent: 0;
+                position: relative
+            }
+
+                .shareaholic-share-buttons-container .shareaholic-share-buttons-heading img.shareaholic-share-buttons-heading-image {
+                    margin: 0 0 -30px 0 !important;
+                    float: none !important;
+                    border: 0 !important;
+                    outline: none !important;
+                    box-shadow: none !important;
+                    background: none !important;
+                    padding: 0 !important
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-mini:not(.shareaholic-mobile.shareaholic-bottom-align) li.shareaholic-share-button {
+                width: 20px !important;
+                height: 20px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-mini li.shareaholic-share-button .shareaholic-share-button-counter {
+                height: 20px;
+                width: 35px !important;
+                line-height: 20px !important;
+                font-size: 11px !important;
+                border-radius: 3px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-mini.shareaholic-side-counter li.shareaholic-share-button.shareaholic-has-shares {
+                width: 62px !important
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-mini.shareaholic-side-counter li.shareaholic-share-button .shareaholic-share-button-counter {
+                display: none
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-mini.shareaholic-top-counter li.shareaholic-share-button {
+                height: 56px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-large li.shareaholic-share-button {
+                width: 70px !important;
+                height: 70px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-large.shareaholic-vertical.shareaholic-inset-counter li.shareaholic-share-button.shareaholic-has-shares {
+                height: 82px
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-large.shareaholic-vertical.shareaholic-inset-counter li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-counter {
+                    line-height: 32px !important
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-rectangle ul.shareaholic-share-buttons li.shareaholic-share-button {
+                width: 70px !important;
+                height: 20px;
+                box-sizing: content-box !important;
+                -webkit-box-sizing: content-box !important;
+                -moz-box-sizing: content-box !important
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-rectangle ul.shareaholic-share-buttons li.shareaholic-share-button .shr-share-button-verb {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 28px;
+                    line-height: 20px !important;
+                    font-weight: 600
+                }
+
+                .shareaholic-share-buttons-container.shareaholic-rectangle ul.shareaholic-share-buttons li.shareaholic-share-button .shareaholic-share-button-counter {
+                    height: 20px;
+                    width: 35px !important;
+                    line-height: 20px !important;
+                    font-size: 11px;
+                    border-radius: 3px
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-rectangle.shareaholic-vertical ul.shareaholic-share-buttons li.shareaholic-share-button {
+                float: none !important
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-rectangle.shareaholic-vertical ul.shareaholic-share-buttons li.shareaholic-share-button .shareaholic-share-button-container {
+                    margin: 0 !important
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-rectangle.shareaholic-vertical.shareaholic-top-counter li.shareaholic-share-button {
+                height: auto !important
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-rectangle.shareaholic-side-counter li.shareaholic-share-button.shareaholic-has-shares {
+                width: 112px !important
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-rectangle.shareaholic-side-counter li.shareaholic-share-button .shareaholic-share-button-counter {
+                line-height: 20px !important;
+                font-size: 11px !important;
+                display: none
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-rectangle.shareaholic-top-counter li.shareaholic-share-button {
+                height: auto !important
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-flat li.shareaholic-share-button .shareaholic-share-button-counter {
+                border-radius: 0
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-flat.shareaholic-badge-counter li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-counter {
+                background: #d60000 !important;
+                box-shadow: none !important
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-flat.shareaholic-inset-counter li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-container {
+                padding-bottom: 16px !important
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-flat.shareaholic-inset-counter li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-container .shareaholic-share-button-counter {
+                    z-index: 1;
+                    display: block;
+                    color: #fff !important;
+                    bottom: 0;
+                    line-height: 23px;
+                    position: absolute;
+                    margin: 0 !important;
+                    background: transparent !important;
+                    visibility: visible;
+                    font-size: 12px !important
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-round {
+                background-color: inherit;
+                background-image: none
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-round li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-counter {
+                    border-radius: 0 40px 40px 0 !important;
+                    padding: 0 7px 0 20px !important;
+                    margin: 0 0 0 -20px !important;
+                    line-height: 40px !important;
+                    z-index: 0
+                }
+
+                    .shareaholic-share-buttons-container.shareaholic-round li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-counter:after {
+                        display: none
+                    }
+
+                .shareaholic-share-buttons-container.shareaholic-round.shareaholic-mini li.shareaholic-share-button .shareaholic-share-button-counter {
+                    padding: 0 7px 0 10px !important;
+                    line-height: 20px !important
+                }
+
+                .shareaholic-share-buttons-container.shareaholic-round.shareaholic-rectangle li.shareaholic-share-button .shareaholic-share-button-counter {
+                    padding: 0 7px 0 10px
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-floated {
+                position: fixed;
+                z-index: 10000000;
+                top: 15%;
+                left: 0;
+                line-height: 0 !important
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-floated ul.shareaholic-share-buttons {
+                    margin: 0 !important;
+                    padding: 0 !important
+                }
+
+                    .shareaholic-share-buttons-container.shareaholic-floated ul.shareaholic-share-buttons li.shareaholic-total-count {
+                        background-color: #fff
+                    }
+
+                    .shareaholic-share-buttons-container.shareaholic-floated ul.shareaholic-share-buttons li.shareaholic-share-button {
+                        padding: 0 !important;
+                        font-size: 0;
+                        line-height: 0
+                    }
+
+                        .shareaholic-share-buttons-container.shareaholic-floated ul.shareaholic-share-buttons li.shareaholic-share-button .shareaholic-service-icon {
+                            border-radius: 0 !important
+                        }
+
+                        .shareaholic-share-buttons-container.shareaholic-floated ul.shareaholic-share-buttons li.shareaholic-share-button .shareaholic-share-button-counter {
+                            padding: 0;
+                            width: 100%
+                        }
+
+                .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-right-align {
+                    left: auto;
+                    right: 0
+                }
+
+                .shareaholic-share-buttons-container.shareaholic-floated .shareaholic-share-buttons-heading {
+                    display: none
+                }
+
+                .shareaholic-share-buttons-container.shareaholic-floated .shareaholic-share-button-sizing {
+                    width: 100%
+                }
+
+                .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-force-relative {
+                    position: relative
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-wrapped.shareaholic-left-align {
+                float: left
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-wrapped.shareaholic-right-align {
+                float: right
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-wrapped.shareaholic-center-align {
+                float: none
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-diglett li.shareaholic-share-button {
+                height: 40px;
+                width: 55px !important;
+                padding: 5px 0 !important
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-diglett li.shareaholic-share-button .shareaholic-share-button-sizing {
+                    position: relative;
+                    height: 40px
+                }
+
+                    .shareaholic-share-buttons-container.shareaholic-diglett li.shareaholic-share-button .shareaholic-share-button-sizing a {
+                        position: absolute;
+                        background-image: none;
+                        left: 10px;
+                        top: 10px;
+                        height: 30px;
+                        border-radius: 4px 4px 0 0
+                    }
+
+                    .shareaholic-share-buttons-container.shareaholic-diglett li.shareaholic-share-button .shareaholic-share-button-sizing:after {
+                        background: url("https://k4z6w9b5.stackpathcdn.com/v2/images_0ecbeeff/share-buttons/share-button-shadow.png") 0 100% no-repeat;
+                        content: " ";
+                        height: 15px;
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        display: block;
+                        width: 60px;
+                        z-index: 100
+                    }
+
+        @media (min--moz-device-pixel-ratio:1.3),(-o-min-device-pixel-ratio:2.6/2),(-webkit-min-device-pixel-ratio:1.3),(min-device-pixel-ratio:1.3),(min-resolution:1.3dppx) {
+            .shareaholic-share-buttons-container.shareaholic-diglett li.shareaholic-share-button .shareaholic-share-button-sizing:after {
+                background-image: url("https://k4z6w9b5.stackpathcdn.com/v2/images_0ecbeeff/share-buttons/share-button-shadow@2x.png");
+                background-size: 60px 39px
+            }
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-diglett li.shareaholic-share-button:hover .shareaholic-share-button-sizing a {
+            top: 5px;
+            opacity: 1;
+            height: 35px
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-diglett.shareaholic-vertical li.shareaholic-share-button {
+            width: 40px !important;
+            margin: 0 auto !important
+        }
+
+            .shareaholic-share-buttons-container.shareaholic-diglett.shareaholic-vertical li.shareaholic-share-button .shareaholic-share-button-container {
+                margin: 0 !important
+            }
+
+        .shareaholic-share-buttons-container.shareaholic-diglett.shareaholic-vertical.shareaholic-badge-counter li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-counter {
+            right: -18px
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-diglett.shareaholic-badge-counter li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-counter {
+            top: 5px;
+            right: 0
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-diglett.shareaholic-badge-counter li.shareaholic-share-button.shareaholic-has-shares:hover .shareaholic-share-button-counter {
+            top: 0
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-badge-counter li.shareaholic-share-button.shareaholic-has-shares {
+        }
+
+            .shareaholic-share-buttons-container.shareaholic-badge-counter li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-counter {
+                display: block;
+                position: absolute;
+                visibility: visible;
+                width: auto;
+                height: auto;
+                top: -2px;
+                right: -3px;
+                text-align: center;
+                min-width: 8px !important;
+                padding: 1px 4px !important;
+                color: #fff !important;
+                font-family: 'Open Sans',arial,sans-serif !important;
+                font-size: 10px !important;
+                font-weight: 600 !important;
+                background: #d60000 !important;
+                background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#fd7c7e),color-stop(100%,#d60000)) !important;
+                background-image: -webkit-linear-gradient(top,#fd7c7e,#d60000) !important;
+                background-image: -moz-linear-gradient(top,#fd7c7e,#d60000);
+                background-image: -o-linear-gradient(top,#fd7c7e,#d60000);
+                background-image: linear-gradient(top,#fd7c7e,#d60000);
+                -webkit-border-radius: 15px !important;
+                border-radius: 15px !important;
+                box-shadow: 0 2px 2px rgba(0,0,0,0.4);
+                text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+                line-height: 14px !important;
+                border: 2px solid #fff !important;
+                z-index: 1
+            }
+
+        .shareaholic-share-buttons-container.shareaholic-badge-counter.shareaholic-vertical li.shareaholic-share-button {
+            width: 40px !important;
+            margin: 0 auto !important;
+            padding: 5px 0 !important
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-side-counter li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-counter {
+            float: right !important;
+            visibility: visible;
+            display: inline-block;
+            box-sizing: content-box;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box
+        }
+
+            .shareaholic-share-buttons-container.shareaholic-side-counter li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-counter:after {
+                top: 50%;
+                right: 100%;
+                margin: -5px 0 0 0;
+                border-right-color: #e6e7e9
+            }
+
+        .shareaholic-share-buttons-container.shareaholic-top-counter li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-counter {
+            visibility: visible
+        }
+
+            .shareaholic-share-buttons-container.shareaholic-top-counter li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-counter:after {
+                left: 50%;
+                top: 100%;
+                margin: 0 0 0 -5px;
+                border-top-color: #e6e7e9
+            }
+
+        .shareaholic-share-buttons-container.shareaholic-top-counter li.shareaholic-share-button .shareaholic-share-button-counter {
+            margin: 0 0 7px 0 !important;
+            display: block;
+            visibility: hidden;
+            width: 40px !important;
+            height: 28px !important;
+            font-size: 14px !important;
+            line-height: 28px !important
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-top-counter.shareaholic-vertical li.shareaholic-share-button {
+            margin: 0 auto !important;
+            width: 40px
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-top-counter.shareaholic-rectangle li.shareaholic-share-button.shareaholic-has-shares .shareaholic-share-button-counter {
+            line-height: 28px !important;
+            width: auto !important
+        }
+
+        .shareaholic-share-buttons-container li.shareaholic-share-button {
+            list-style: none !important;
+            background: none !important;
+            float: left !important;
+            width: auto;
+            margin: 0 !important;
+            padding: 4px !important;
+            position: relative;
+            cursor: pointer;
+            box-sizing: content-box;
+            overflow: visible;
+            text-indent: 0;
+            clear: none;
+            border: none
+        }
+
+            .shareaholic-share-buttons-container li.shareaholic-share-button .shareaholic-share-button-sizing {
+                float: left;
+                position: relative;
+                display: inline-block;
+                overflow: visible !important;
+                border: none
+            }
+
+            .shareaholic-share-buttons-container li.shareaholic-share-button:before {
+                content: "" !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                display: inline !important;
+                border: none;
+                position: static
+            }
+
+            .shareaholic-share-buttons-container li.shareaholic-share-button .shareaholic-share-button-counter {
+                margin: 0 0 0 7px !important;
+                font-family: 'Open Sans',arial,sans-serif !important;
+                width: 40px;
+                vertical-align: top;
+                position: relative;
+                text-align: center;
+                background: #e6e7e9 !important;
+                color: #666 !important;
+                font-size: 14px !important;
+                font-weight: 400;
+                border-radius: 4px;
+                line-height: 40px;
+                border: 0 solid #ccc;
+                display: none;
+                visibility: hidden;
+                cursor: pointer
+            }
+
+                .shareaholic-share-buttons-container li.shareaholic-share-button .shareaholic-share-button-counter:after {
+                    content: "";
+                    display: inline-block;
+                    position: absolute;
+                    border: 5px solid transparent
+                }
+
+                .shareaholic-share-buttons-container li.shareaholic-share-button .shareaholic-share-button-counter:before {
+                    content: "";
+                    display: inline-block;
+                    position: absolute;
+                    border: 6px solid transparent
+                }
+
+            .shareaholic-share-buttons-container li.shareaholic-share-button .shr-share-button-verb {
+                display: none;
+                color: #fff !important;
+                font-size: 11px !important
+            }
+
+        .shareaholic-follow-buttons-container ul.shareaholic-share-buttons {
+            margin: 0 !important
+        }
+
+        .shareaholic-follow-buttons-container.shareaholic-center-align .shareaholic-share-buttons-heading {
+            text-align: center !important
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile {
+            display: block
+        }
+
+            .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile.shareaholic-top-align {
+                top: 0 !important
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile.shareaholic-bottom-align {
+                top: inherit;
+                margin-bottom: 0;
+                bottom: 0;
+                left: 0
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile.shareaholic-slide-down {
+                bottom: -40px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile.shareaholic-slide-up {
+                margin-top: -40px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile.shareaholic-inset-counter li.shareaholic-has-shares .shareaholic-service-icon {
+                top: -16px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile.shareaholic-inset-counter.shareaholic-slide-down {
+                bottom: -56px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile.shareaholic-inset-counter.shareaholic-slide-up {
+                margin-top: -56px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile.shareaholic-inset-counter.shareaholic-top-align {
+                top: 16px !important
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile.shareaholic-inset-counter.shareaholic-top-align li {
+                    top: -16px
+                }
+
+            .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile.shareaholic-inset-counter .shareaholic-share-button-sizing {
+                padding-top: 16px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile.shareaholic-inset-counter .shareaholic-service-icon {
+                top: -8px
+            }
+
+            .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile ul.shareaholic-share-buttons {
+                overflow: visible;
+                height: auto;
+                display: inline-block
+            }
+
+                .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile ul.shareaholic-share-buttons li.shareaholic-share-button {
+                    float: left !important;
+                    width: auto !important
+                }
+
+                    .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile ul.shareaholic-share-buttons li.shareaholic-share-button:hover {
+                        opacity: 1
+                    }
+
+                    .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile ul.shareaholic-share-buttons li.shareaholic-share-button .shareaholic-share-button-sizing {
+                        float: left
+                    }
+
+                        .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-mobile ul.shareaholic-share-buttons li.shareaholic-share-button .shareaholic-share-button-sizing a {
+                            margin: 0 auto !important
+                        }
+
+        .shareaholic-share-buttons-animation-wrapper {
+            position: relative
+        }
+
+        .shareaholic-share-arrow {
+            position: absolute;
+            bottom: 15px;
+            left: 0
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-floated:not(.shareaholic-mini) .shareaholic-share-button-sizing a.shareaholic-service-icon {
+            margin: 0 auto !important
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-floated.shareaholic-right-align.shareaholic-mini .shareaholic-service-icon {
+            float: right
+        }
+
+        .shareaholic-share-buttons-container.shareaholic-floated .shareaholic-share-button-container:hover {
+            opacity: .65
+        }
+
+        .shr-share-button-invisible {
+            visibility: hidden
+        }
+
+        .shareaholic-media-overlay .shareaholic-share-buttons-container {
+            height: 0
+        }
+
+        .shareaholic-media-overlay li.shareaholic-share-button {
+            padding: 0 !important
+        }
+
+            .shareaholic-media-overlay li.shareaholic-share-button:hover {
+                opacity: 1 !important
+            }
+
+            .shareaholic-media-overlay li.shareaholic-share-button
+            .shareaholic-share-button-container {
+                opacity: 1 !important
+            }
+
+            .shareaholic-media-overlay li.shareaholic-share-button .shareaholic-service-icon:hover {
+                opacity: 1 !important
+            }
+
+        .shareaholic-media-overlay ul.shareaholic-share-buttons {
+            padding: 0 !important;
+            margin: 0 !important
+        }
+
+        .shareaholic-media-overlay .shareaholic-shareable_images {
+            width: 100%;
+            height: 100%
+        }
+
+            .shareaholic-media-overlay .shareaholic-shareable_images .shareaholic-share-buttons-container {
+                width: 100%;
+                height: 100%
+            }
+    </style>
+
+
+    <!-- Footer -->
+    <footer class="page-footer font-small mdb-color lighten-3 pt-4" style="background-color: #E6F4F1">
+
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left">
+
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+
+                    <!-- Content -->
+                    <h5 class="font-weight-bold text-uppercase mb-4">KIFAL-AUTO</h5>
+                    <p>KIFAL est la marketplace qui réinvente l’expérience d’achat et de vente de sa voiture d’occasion. Accompagnement bout en bout et certification de véhicules</p>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mb-4">A propos</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <p>
+                                <a href="https://kifal-auto.ma/comment-ca-marche/">Comment ça marche</a>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <a href="https://kifal-auto.ma/nos-partenaires/">Nos partenaire</a>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <a href="https://kifal-auto.ma/blog-guides/">Blog-guides</a>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <a href="https://kifal-auto.ma/faq/">FAQ</a>
+                            </p>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+                    <!-- Contact details -->
+                    <h5 class="font-weight-bold text-uppercase mb-4">Addresse</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <p>
+                                <i class="fas fa-home mr-3"></i> Technopark ,Casablanca
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <i class="fas fa-envelope mr-3"></i> contact@kifal-auto.ma
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <i class="fas fa-phone mr-3"></i> 0645070707
+                            </p>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
+
+                    <!-- Social buttons -->
+                    <h5 class="font-weight-bold text-uppercase mb-4">Suivez-nous</h5>
+
+                    <!-- Facebook -->
+                    <a class="btn-floating btn-fb">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <!-- Twitter -->
+                    <a class="btn-floating btn-tw">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <!-- Google +-->
+                    <a class="btn-floating btn-gplus">
+                        <i class="fab fa-google-plus-g"></i>
+                    </a>
+                    <!-- Dribbble -->
+                    <a class="btn-floating btn-dribbble">
+                        <i class="fab fa-dribbble"></i>
+                    </a>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <!-- Footer Links -->
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">
+            © 2020 Copyright:
+            <a href=""> KIFAL-FINANCE</a>
+        </div>
+        <!-- Copyright -->
+
+
+
+    </footer>
+    <!-- Footer -->
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="jquery.js"></script>
+    <script src="bundle.js"></script>
+
+</body>
+
+</html>

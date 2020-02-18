@@ -1,0 +1,45 @@
+
+
+ .modal-content { background-color: rgba(30, 117, 247, 0.815) !important; color: #fff; text-align: center; } 
+ .modal .btn { display: block; margin: 15px auto 0 auto; }
+  .modal-title{ font-weight: 700;  text-align: center; }
+   
+    .modal-content p{ font-size: 1.2em; } 
+    .modal-content .btn{ font-size: 1.5em; font-weight: 700; }
+ .d{
+    margin-top: 60px;
+    background:transparent;
+    display: block;
+   }
+   .modal-dialog{
+       
+   }
+   
+    .btn-xl{
+        text-transform:uppercase;padding:1.5rem 3rem;font-size:.9rem;font-weight:700;letter-spacing:.1rem
+    }
+    .bg-black{
+        background-color:#000!important
+    }
+    .navbar-custom{
+        padding-top:1rem;padding-bottom:1rem;background-color:rgba(30, 117, 247, 0.815)
+    }
+    .navbar-custom .navbar-brand{
+        text-transform:uppercase;font-size:1rem;letter-spacing:.1rem;font-weight:700
+    }
+    .navbar-custom .navbar-nav .nav-item .nav-link{
+        text-transform:uppercase;font-size:.8rem;font-weight:700;letter-spacing:.1rem
+    }
+    .aziz{
+        margin-top: 30px;
+    }
+    .b{
+        margin-top: 90px;
+        background:transparent;
+    }
+    .c{
+        margin-top: 30px;
+        background:transparent;
+    }
+
+
